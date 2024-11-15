@@ -1,6 +1,6 @@
 import requests
 from flask import Flask, render_template, request
-
+from send_email import send_message
 def request_decorator(function):
     def wraper():
         global data
@@ -22,8 +22,18 @@ def home(data=None):
 def about():
     return render_template('about.html')
 
-@app.route('/contact')
+@app.route('/contact', methods=['GET', 'POST'], endpoint='contact')
 def contact():
+    if request.method == 'POST':
+        name = request.form.get('name')
+        email = request.form.get('email')
+        phone = request.form.get('phone')
+        message = request.form.get('message')
+        status = send_message({"name":name, "email":email, "phone":phone, "message":message})
+        if status:
+            return render_template('contact.html', msg="Successfully sent your message")
+        else:
+            return render_template('contact.html', msg="Something went wrong while sending your message")
     return render_template('contact.html')
 
 @app.route('/blog/<int:index>')
@@ -33,6 +43,7 @@ def blog(index):
         if blog_post["id"] == index:
             requested_post = blog_post
     return render_template("post.html", post=requested_post)
+
 
 if __name__ == '__main__':
     app.run(debug=True)
