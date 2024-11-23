@@ -1,0 +1,21 @@
+body {
+    background-color: #333;
+    color: white;
+}
+
+img {
+    width: 70px;
+    height: 70px;
+}
+
+.table {
+    background-color: #333 !important; /* Table background */
+    color: white !important;          /* Text color */
+}
+
+.table th,
+.table td {
+    background-color: #333 !important; /* Ensure cells get the color */
+    color: white !important;          /* Ensure text contrast */
+}
+

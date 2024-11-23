@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cafes</title>
+
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+	<link rel="stylesheet" href="../static/style.css">
+</head>
+
+<body>
+    <div class="mt-3 mx-5">
+        <h1 class="display-3 fw-bold">All Cafes</h1>
+        <hr class="opacity-75 mb-0">
+        <div>
+            <table class="table mb-5">
+                <thead>
+                  <tr>
+                    {% for names in columns %}
+                    <th scope="col">{{names}}</th>
+                    {% endfor %}
+                  </tr>
+                </thead>
+                <tbody>
+                    {% for item in rows%}
+                    <tr>
+                        
+                        {% for value in item %}
+                        {% if loop.index0 == 1 %} 
+                        <td><a href="{{value}}" class="link-warning link-opacity-50-hover link-underline-opacity-50-hover">Map Link</a></td>
+                        {% else %}
+                        <td>{{value}}</td>
+                        {% endif %}
+                        {% endfor %}
+                    </tr>
+                    {% endfor %}
+                </tbody>
+              </table>
+        </div>
+
+        <a href="{{url_for('home')}}" class="link-warning link-opacity-50-hover link-underline-opacity-50-hover">Return to Home</a>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+</body>
+</html>
